@@ -1,4 +1,5 @@
-
+.piperider
+venv/
 target/
 dbt_modules/
 logs/
