@@ -7,9 +7,12 @@ sources:
       #database: taxi-rides-ny-339813
 
       # For postgres:
-      database: production
+      #database: production
 
-      schema: trips_data_all
+      #schema: trips_data_all
+
+      # DuckDB
+      schema: main
 
       # loaded_at_field: record_loaded_at
       tables:
