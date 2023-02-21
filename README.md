@@ -118,7 +118,7 @@ This workshop project will run you through the following steps:
 	group by 1,2,3
 	```
 
-	b. Comment out lines 26-28 of `models/core/dm_monthly_zone_revnue.sql`
+	b. Comment out lines 26-28 of `models/core/dm_monthly_zone_revenue.sql`
 	
 	```sql
 	-- Additional calculations
