@@ -325,7 +325,7 @@ PipeRider also supports comparing metrics between runs. The comarison is visuali
 	piperider compare-reports --last
 	```
 
-5. View the newly generatec comparison report to see how the metrics compare.
+5. View the newly generated comparison report to see how the metrics compare.
 
 
 6. The comparison summary also contains a summary of the metric differences between reports.
