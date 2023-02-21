@@ -284,27 +284,27 @@ PipeRider also supports comparing metrics between runs. The comarison is visuali
 	
 	```yaml
 	metrics:
-  - name: average_distance
-    label: Average Distance
-    model: ref('fact_trips')
-    description: "The average trip distance"
+	  - name: average_distance
+	    label: Average Distance
+	    model: ref('fact_trips')
+	    description: "The average trip distance"
 
-    calculation_method: average
-    expression: trip_distance
+	    calculation_method: average
+	    expression: trip_distance
 
-    timestamp: pickup_datetime
-    time_grains: [month, quarter, year]
+	    timestamp: pickup_datetime
+	    time_grains: [month, quarter, year]
 
-    filters:
-      - field: pickup_borough
-        operator: '='
-        value: "'Manhattan'"
-      - field: dropoff_borough
-        operator: '='
-        value: "'Manhattan'"
+	    filters:
+	      - field: pickup_borough
+	        operator: '='
+	        value: "'Manhattan'"
+	      - field: dropoff_borough
+	        operator: '='
+	        value: "'Manhattan'"
 
-    tags:
-    - piperider
+	    tags:
+	    - piperider
 	```
 
 2. Compile your dbt project again.
