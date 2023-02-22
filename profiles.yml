@@ -5,4 +5,3 @@ pg-dbt-workshop:
     dev:
       type: duckdb
       path: 'nyc_taxi.duckdb'
-      threads: 24
