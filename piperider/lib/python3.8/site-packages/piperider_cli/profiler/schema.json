@@ -1,0 +1,616 @@
+{
+  "title": "SingleReportSchema",
+  "type": "object",
+  "required": [
+    "tables",
+    "id",
+    "created_at",
+    "datasource"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "tables": {
+      "patternProperties": {
+        ".+": {
+          "title": "TableSchema",
+          "type": "object",
+          "required": [
+            "name",
+            "columns"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "row_count": {
+              "description": "Number of rows in this table",
+              "type": "integer"
+            },
+            "duplicate_rows": {
+              "description": "Number of rows that have identical values across corresponding columns in this table",
+              "type": "integer"
+            },
+            "duplicate_rows_p": {
+              "description": "Percentage of rows that have identical values across corresponding columns in this table",
+              "type": "number"
+            },
+            "samples": {
+              "description": "Number of rows after applying the row-limit configuration (rows will be unaffected if none is set)",
+              "type": "integer"
+            },
+            "samples_p": {
+              "description": "Percentage of rows after applying the row-limit configuration (rows will be unaffected if none is set)",
+              "type": "number"
+            },
+            "created": {
+              "description": "The time that this table created at in ISO 8601 format including time zone",
+              "type": "string"
+            },
+            "last_altered": {
+              "description": "The last time that this table modified at in ISO 8601 format including time zone",
+              "type": "string"
+            },
+            "bytes": {
+              "description": "The volume size of this table in bytes",
+              "type": "integer"
+            },
+            "freshness": {
+              "description": "Time differentiation between the current time and table's last altered time",
+              "type": "integer"
+            },
+            "col_count": {
+              "description": "Number of columns in this table",
+              "type": "integer"
+            },
+            "columns": {
+              "type": "object",
+              "patternProperties": {
+                ".+": {
+                  "title": "ColumnSchema",
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "type",
+                    "schema_type"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "total": {
+                      "description": "The total count of values, regardless of validity",
+                      "type": "integer"
+                    },
+                    "samples": {
+                      "description": "Number of rows after applying the row-limit configuration (rows will be unaffected if none is set",
+                      "type": "integer"
+                    },
+                    "samples_p": {
+                      "description": "Percentage of rows after applying the row-limit configuration (rows will be unaffected if none is set",
+                      "type": "number"
+                    },
+                    "nulls": {
+                      "description": "The count of values that are null type",
+                      "type": "integer"
+                    },
+                    "nulls_p": {
+                      "description": "The percentage of values that are null type",
+                      "type": "number"
+                    },
+                    "non_nulls": {
+                      "description": "The count of non null values",
+                      "type": "integer"
+                    },
+                    "non_nulls_p": {
+                      "description": "The percentage of non null values",
+                      "type": "number"
+                    },
+                    "distinct": {
+                      "description": "The count of distinct kinds of values (e.g. [a,b,c,c] => [a,b,c])",
+                      "type": "integer"
+                    },
+                    "distinct_p": {
+                      "description": "The percentage of distinct kinds of values (e.g. [a,b,c,c] => [a,b,c])",
+                      "type": "number"
+                    },
+                    "duplicates": {
+                      "description": "The count of values that are recurring (e.g. [a,b,c,c] => [c,c])",
+                      "type": "integer"
+                    },
+                    "duplicates_p": {
+                      "description": "The percentage of values that are recurring (e.g. [a,b,c,c] => [c,c])",
+                      "type": "number"
+                    },
+                    "non_duplicates": {
+                      "description": "The count of values that are non-recurring (e.g. [a,b,c,c] => [a,b])",
+                      "type": "integer"
+                    },
+                    "non_duplicates_p": {
+                      "description": "The percentage of values that are non-recurring (e.g. [a,b,c,c] => [a,b])",
+                      "type": "number"
+                    },
+                    "histogram": {
+                      "$ref": "#/definitions/histogram"
+                    },
+                    "histogram_length": {
+                      "$ref": "#/definitions/histogram"
+                    },
+                    "topk": {
+                      "$ref": "#/definitions/topk"
+                    },
+                    "name": {
+                      "description": "Name of this column",
+                      "type": "string"
+                    },
+                    "description": {
+                      "description": "Descriptor of this column",
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Generic types of schema, python-based",
+                      "enum": [
+                        "string",
+                        "numeric",
+                        "integer",
+                        "datetime",
+                        "boolean",
+                        "other"
+                      ]
+                    },
+                    "schema_type": {
+                      "description": "The column type definition in SQL database",
+                      "type": "string"
+                    },
+                    "valids": {
+                      "description": "The count of values that are non-null and not invalid",
+                      "type": "integer"
+                    },
+                    "valids_p": {
+                      "description": "The percentage of values that are non-null and not invalid",
+                      "type": "number"
+                    },
+                    "invalids": {
+                      "description": "The count of values that don't match the schema type. For example, a string in a numeric column.",
+                      "type": "integer"
+                    },
+                    "invalids_p": {
+                      "description": "The percentage of values that don't match the schema type. For example, a string in a numeric column.",
+                      "type": "number"
+                    },
+                    "zeros": {
+                      "description": "The count of numerical values that equal zero exactly",
+                      "type": "integer"
+                    },
+                    "zeros_p": {
+                      "description": "The percentage of numerical values that equal zero exactly",
+                      "type": "number"
+                    },
+                    "negatives": {
+                      "description": "The count of numerical values that are less than zero",
+                      "type": "integer"
+                    },
+                    "negatives_p": {
+                      "description": "The percentage of numerical values that are less than zero",
+                      "type": "number"
+                    },
+                    "positives": {
+                      "description": "The count of numerical values that are more than zero",
+                      "type": "integer"
+                    },
+                    "positives_p": {
+                      "description": "The percentage of numerical values that are more than zero",
+                      "type": "number"
+                    },
+                    "zero_length": {
+                      "description": "The count of string values with zero lengths exactly",
+                      "type": "integer"
+                    },
+                    "zero_length_p": {
+                      "description": "The percentage of string values with zero lengths exactly",
+                      "type": "number"
+                    },
+                    "non_zero_length": {
+                      "description": "The count of string values with non-zero lengths",
+                      "type": "integer"
+                    },
+                    "non_zero_length_p": {
+                      "description": "The percentage of string values with non-zero lengths",
+                      "type": "number"
+                    },
+                    "trues": {
+                      "description": "The count of boolean true values",
+                      "type": "integer"
+                    },
+                    "trues_p": {
+                      "description": "The percentage of boolean true values",
+                      "type": "number"
+                    },
+                    "falses": {
+                      "description": "The count of boolean false values",
+                      "type": "integer"
+                    },
+                    "falses_p": {
+                      "description": "The percentage of boolean false values",
+                      "type": "number"
+                    },
+                    "profile_duration": {
+                      "type": "string"
+                    },
+                    "elapsed_milli": {
+                      "type": "integer"
+                    },
+                    "sum": {
+                      "description": "The sum of a column's values",
+                      "type": "number"
+                    },
+                    "avg": {
+                      "description": "The average of a column's values",
+                      "type": "number"
+                    },
+                    "avg_length": {
+                      "description": "The average text length of a string column",
+                      "type": "number"
+                    },
+                    "stddev": {
+                      "description": "The standard deviation of a column's values",
+                      "type": "number"
+                    },
+                    "stddev_length": {
+                      "description": "The standard deviation of text length of a string column",
+                      "type": "number"
+                    },
+                    "min": {
+                      "description": "The minimum value of a column's range",
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ]
+                    },
+                    "min_length": {
+                      "description": "The minimum length of a string column",
+                      "type": "integer"
+                    },
+                    "max": {
+                      "description": "The maximum value of a column's range",
+                      "oneOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "number"
+                        }
+                      ]
+                    },
+                    "max_length": {
+                      "description": "The maximum length of a string column",
+                      "type": "integer"
+                    },
+                    "p5": {
+                      "description": "The quantile value of the dataset (5th percentile)",
+                      "type": "number"
+                    },
+                    "p25": {
+                      "description": "The quantile value of the dataset (25th percentile)",
+                      "type": "number"
+                    },
+                    "p50": {
+                      "description": "The quantile value of the dataset (50th percentile)",
+                      "type": "number"
+                    },
+                    "p75": {
+                      "description": "The quantile value of the dataset (75th percentile)",
+                      "type": "number"
+                    },
+                    "p95": {
+                      "description": "The quantile value of the dataset (95th percentile)",
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            },
+            "profile_duration": {
+              "type": "string"
+            },
+            "elapsed_milli": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/business_metric"
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/assertion_test"
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "metadata_version": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "datasource": {
+      "title": "DataSource",
+      "type": "object",
+      "required": [
+        "name",
+        "type"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "histogram": {
+      "title": "Histogram",
+      "type": "object",
+      "required": [
+        "labels",
+        "counts",
+        "bin_edges"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "labels": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "bin_edges": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "topk": {
+      "description": "The most common or frequent value",
+      "title": "Topk",
+      "type": "object",
+      "required": [
+        "values",
+        "counts"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "counts": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "business_metric": {
+      "title": "BusinessMetric",
+      "type": "object",
+      "required": [
+        "name",
+        "label",
+        "description",
+        "grain",
+        "dimensions",
+        "headers",
+        "data"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Name of the business metric with time grain",
+          "type": "string"
+        },
+        "label": {
+          "description": "A short for name of the business metric with time grain",
+          "type": "string"
+        },
+        "description": {
+          "description": "Long form, human-readable description for the business metric",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "grain": {
+          "description": "The time grain that the metric was evaluated",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dimensions": {
+          "description": "The list of dimensions to group the business metric",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "headers": {
+          "description": "The header names for queried row of the business metric",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "description": "Lists of row results of the business metric",
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "assertion_test": {
+      "title": "AssertionTest",
+      "type": "object",
+      "required": [
+        "id",
+        "table",
+        "column",
+        "tags",
+        "status",
+        "message",
+        "display_name",
+        "source"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "metric": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "table": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "column": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed"
+          ]
+        },
+        "expected": {},
+        "actual": {},
+        "message": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
