@@ -7,7 +7,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'pg-dbt-workshop'
+profile: 'my-bigquery-db'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -25,6 +25,7 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_packages"
     - "dbt_modules"
 
+# surrogate_key_treat_nulls_as_empty_strings: 'True'
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models

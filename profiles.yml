@@ -1,7 +1,10 @@
-pg-dbt-workshop:
-
+my-bigquery-db:
   target: dev
   outputs:
     dev:
-      type: duckdb
-      path: 'nyc_taxi.duckdb'
+      type: bigquery
+      method: service-account
+      project: hidden-casing-375920
+      dataset: piperider_workshop
+      threads: 1
+      keyfile: /home/bartoszsklodowski/gcloud_keys/hidden-casing-375920-1be565532f5f.json
