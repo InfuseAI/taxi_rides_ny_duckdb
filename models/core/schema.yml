@@ -35,5 +35,13 @@ metrics:
     timestamp: pickup_datetime
     time_grains: [month, quarter, year]
 
+    filters:
+      - field: pickup_borough
+        operator: "="
+        value: "'Manhattan'"
+      - field: dropoff_borough
+        operator: "="
+        value: "'Manhattan'"
+
     tags:
       - piperider
