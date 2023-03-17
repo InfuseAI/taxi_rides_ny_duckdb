@@ -49,6 +49,9 @@ This workshop project will run you through the following steps:
 	```bash
 	python -m venv ./venv
 	source ./venv/bin/activate
+	# for conda
+	conda create -p ./venv
+	conda activate venv/
 	```
 5. Update pip and install the neccessary dbt packages and PipeRider
 
@@ -112,12 +115,13 @@ This workshop project will run you through the following steps:
 		- Click link in email to go directly to new profile page and copy the API Token
 		- Paste the API token on the CLI
 		- done
-		- If you aren’t asked to enable auto upload but the setting still works if you add it to ~/.piperider/profile.yml :
+		- If you aren’t asked to enable auto upload but the setting still works if you add it to thr system root folder ~/.piperider/profile.yml :
 		```bash
 		user_id: 12344
 		api_token: abc123
-		default_project: Dave/default
-		auto_upload: true
+		cloud_config:
+			default_project: Ssyed/default
+			auto_upload: true
 		```
 		- To upload the report to Piperider Cloud explicitly
 		```bash
