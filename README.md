@@ -156,7 +156,7 @@ This workshop project will run you through the following steps:
 	```bash
 	git add .
 	git commit -m "Added statistics model, updated revenue model"
-	git push origin datamodeling
+	git push origin data-modeling
 	```
 	
 7. Create a pull request.
