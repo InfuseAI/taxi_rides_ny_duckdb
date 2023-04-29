@@ -19,6 +19,13 @@ This workshop project will run you through the following steps:
 - Ideally, you have completed the [Week 4 module on Analytics Engineering](https://github.com/DataTalksClub/data-engineering-zoomcamp/tree/main/week_4_analytics_engineering) of the DataTalksClub [Data Engineering Zoomcamp](https://github.com/DataTalksClub/data-engineering-zoomcamp)
 - A basic understanding of [dbt](https://docs.getdbt.com/)
 - Install, or update to, [DuckDB](https://duckdb.org/#quickinstall) 0.7.0
+	- In the root folder 
+	```bash
+	   wget Linux 64-bit: https://github.com/duckdb/duckdb/releases/download/v0.7.1/duckdb_cli-linux-amd64.zip
+	   sudo apt install unzip
+	   unzip duckdb_cli-linux-amd64.zip
+	   sudo mv duckdb /usr/local/bin
+	```
 
 ## Workshop Steps
 
@@ -42,6 +49,9 @@ This workshop project will run you through the following steps:
 	```bash
 	python -m venv ./venv
 	source ./venv/bin/activate
+	# for conda
+	conda create -p ./venv
+	conda activate venv/
 	```
 5. Update pip and install the neccessary dbt packages and PipeRider
 
@@ -90,7 +100,37 @@ This workshop project will run you through the following steps:
 	```
 	
 	View the HTML report to see the full statistical report of your data source.
-	
+
+		* Option 1: Do the steps [here](https://stackoverflow.com/questions/21124869/how-to-view-html-file-in-remote-unix-server) to view the html file on the local browser
+		```bash
+		cd /home/sanyashireen/taxi_rides_ny_duckdb/.piperider/outputs/latest/
+		python -m http.server 8000
+		# Then forward this port on VSCode
+		# Open localhost:8000 on the local browser	
+		```
+	* Option 2: On the cloud
+		- Login to [Piperider Cloud http://cloud.piperider.io/](http://cloud.piperider.io/)
+		- On the CLI run:  `piperider cloud signup`
+		- Enter your email
+		- Click link in email to go directly to new profile page and copy the API Token
+		- Paste the API token on the CLI
+		- done
+		- If you aren’t asked to enable auto upload but the setting still works if you add it to thr system root folder ~/.piperider/profile.yml :
+		```bash
+		user_id: 12344
+		api_token: abc123
+		cloud_config:
+			default_project: Ssyed/default
+			auto_upload: true
+		```
+		- To upload the report to Piperider Cloud explicitly
+		```bash
+		piperider cloud signup
+		# enter email and api key
+		piperider run --upload
+		# go to the url to view the reports on the piperider cloud UI
+		```
+
 2. Make data model changes (move statistics to their own model)
 
 	a. Create a new model `models/core/dm_monthly_zone_statistics.sql`
